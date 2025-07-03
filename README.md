@@ -55,10 +55,12 @@ Triggered for every chat message.
 **Available Variables:**
 
 - `user` - Username
+- `userName` - Username
 - `displayName` - Display name
-- `message` - Message content
 - `userId` - User's ID
+- `message` - Message content
 - `messageId` - Unique message ID
+- `chatRoomId` - Chat room ID
 - `usernameColor` - Hex color of username
 - `isCreator` - Whether user is the creator
 - `isStaff` - Whether user is staff
@@ -66,6 +68,9 @@ Triggered for every chat message.
 - `isSubscriber` - Whether user is subscribed
 - `subscriberTier` - Subscription tier name
 - `subscriberTierColor` - Hex color of tier
+- `subscriberTierId` - Subscription tier ID
+- `platform` - Platform name
+- `timestamp` - Timestamp of message
 
 ### Fansly Tip
 
@@ -73,6 +78,23 @@ Triggered when a message contains a tip.
 
 **Additional Variables:**
 
+- `user` - Username
+- `userName` - Username
+- `displayName` - Display name
+- `userId` - User's ID
+- `message` - Message content
+- `messageId` - Unique message ID
+- `chatRoomId` - Chat room ID
+- `usernameColor` - Hex color of username
+- `isCreator` - Whether user is the creator
+- `isStaff` - Whether user is staff
+- `isFollowing` - Whether user is following
+- `isSubscriber` - Whether user is subscribed
+- `subscriberTier` - Subscription tier name
+- `subscriberTierColor` - Hex color of tier
+- `subscriberTierId` - Subscription tier ID
+- `platform` - Platform name
+- `timestamp` - Timestamp of message
 - `tipAmount` - Tip amount in dollars
 - `tipAmountFormatted` - Formatted tip amount (e.g., "$5.00")
 
@@ -83,12 +105,21 @@ Triggered for new subscriptions.
 **Available Variables:**
 
 - `user` - Username
+- `userName` - Username
 - `displayName` - Display name
+- `userId` - User's ID
+- `tier` - Subscription tier name
 - `tierName` - Subscription tier name
 - `tierColor` - Hex color of tier
+- `tierId` - Subscription tier ID
 - `streak` - Subscription streak in days
 - `totalDays` - Total subscription days
 - `months` - Approximate months subscribed
+- `usernameColor` - Hex color of username
+- `chatRoomId` - Chat room ID
+- `alertId` - Alert ID
+- `platform` - Platform name
+- `timestamp` - Timestamp of subscription
 
 ## Example Actions
 
