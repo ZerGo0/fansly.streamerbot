@@ -14,7 +14,7 @@ A Streamer.bot extension that adds support for Fansly chat events including mess
 
 1. **Download the Extension**
 
-   - Download the latest release from the [Releases](https://github.com/Fansly/Fansly-Streamer.bot-Extension/releases) page
+   - Download the latest release from the [Releases](https://github.com/ZerGo0/fansly.streamerbot/releases/latest) page
 
 2. **Import into Streamer.bot**
 
