@@ -3,6 +3,16 @@ using System.Threading.Tasks;
 
 public class CPHInline
 {
+    public void Init()
+    {
+        CPH.LogInfo("[Fansly] onOpen Init");
+
+        // We need to register the custom triggers here because the onMessage.cs file is not loaded yet
+        CPH.RegisterCustomTrigger("Fansly Message", "fanslyMessage", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Tip", "fanslyTip", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Subscription", "fanslySubscription", new[] {"Fansly"});
+    }
+
     public bool Execute()
     {
         CPH.LogInfo("[Fansly] onOpen");

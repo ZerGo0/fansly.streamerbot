@@ -8,16 +8,6 @@ public class CPHInline
     private const int EVENT_TYPE_CHAT = 10;
     private const int EVENT_TYPE_SUBSCRIPTION = 53;
     private const int ATTACHMENT_TYPE_TIP = 7;
-    
-    public void Init()
-    {
-        CPH.LogInfo("[Fansly] onMessage Init");
-
-        // register custom triggers
-        CPH.RegisterCustomTrigger("Fansly Message", "fanslyMessage", new[] {"Fansly"});
-        CPH.RegisterCustomTrigger("Fansly Tip", "fanslyTip", new[] {"Fansly"});
-        CPH.RegisterCustomTrigger("Fansly Subscription", "fanslySubscription", new[] {"Fansly"});
-    }
 
     public bool Execute()
     {
