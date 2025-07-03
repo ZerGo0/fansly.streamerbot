@@ -40,7 +40,7 @@ A Streamer.bot extension that adds support for Fansly chat events including mess
 
 ## Usage
 
-The extension registers three custom triggers in Streamer.bot:
+The extension registers three custom triggers in Streamer.bot (Triggers > Custom > Fansly):
 
 ### Fansly Message
 
