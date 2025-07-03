@@ -32,6 +32,8 @@ A Streamer.bot extension that adds support for Fansly chat events including mess
      - Value: `408830844350771200` (replace with your chatroom id)
      - Click `Save`
      - `Auto Type` should be unchecked
+   - Go to `Servers/Clients` > `Websocket Client` > Right-click the fansly client > `Disconnect` > And `Connect` again
+     - this joins your chatroom
 
 4. **Double check the setup**
 
