@@ -6,43 +6,37 @@ A Streamer.bot extension that adds support for Fansly chat events including mess
 
 ## Features
 
-- **Chat Messages** - Receive and process all Fansly chat messages
-- **Tips** - Detect and handle tip events with amount information
-- **Subscriptions** - Track new subscriptions with tier and streak information
-- **Rich Metadata** - Access user roles (creator, staff, subscriber) and subscription details
-
-## Prerequisites
-
-- [Streamer.bot](https://streamer.bot/) v0.2.0 or higher
-- .NET Framework 4.8 (included with Windows)
-- A Fansly account with chat access
+- **Chat Messages** - Fansly chat messages
+- **Tips** - Fansly tips
+- **Subscriptions** - Fansly subscriptions
 
 ## Installation
 
 1. **Download the Extension**
 
-   - Clone this repository or download the `onMessage.cs` file
+   - Download the latest release from the [Releases](https://github.com/Fansly/Fansly-Streamer.bot-Extension/releases) page
 
 2. **Import into Streamer.bot**
 
    - Open Streamer.bot
-   - Go to `Actions` → `Sub-Actions` → Right-click → `Add Sub-Action` → `C# Code` → `Execute C# Code`
-   - Copy the entire contents of `onMessage.cs` into the code editor
-   - Click `Compile` to verify there are no errors
-   - Click `Save and Compile`
+   - Open `Import`
+   - Drag and drop the file on the `Import String` field
+   - Click `Import`
 
-3. **Set up WebSocket Connection**
+3. **Set up your chatroom**
 
-   - You'll need a separate WebSocket client to connect to Fansly's chat
-   - WebSocket URL: `wss://chatws.fansly.com/?v=3`
-   - When connected, send a join message:
-     ```json
-     { "t": 46001, "d": "{\"chatRoomId\":\"YOUR_CHAT_ROOM_ID\"}" }
-     ```
+   - Head over to your [Fansly chatroom](https://fansly.com/creator/streaming)
+   - Click the 3 dots next to the chat input > `Copy Chat Url` > copy the id at the end of the url (`https://fansly.com/chatroom/408830844350771200` > `408830844350771200`)
+   - Go to `Variables` > `Persisted Globals` > Right-click > `Add Variable`:
+     - Name: `fanslyChatroomId`
+     - Value: `408830844350771200` (replace with your chatroom id)
+     - Click `Save`
+     - `Auto Type` should be unchecked
 
-4. **Configure Message Forwarding**
-   - Set up your WebSocket client to forward received messages to Streamer.bot
-   - Pass the raw WebSocket message as the `message` argument to the C# code
+4. **Double check the setup**
+
+   - Check all new actions, double click the `Execute Code` actions and hit `Compile` to verify there are no errors
+     - Please join the [Discord](https://discord.gg/SBWkgGcmfr) if you have any issues
 
 ## Usage
 
@@ -76,7 +70,7 @@ Triggered for every chat message.
 
 Triggered when a message contains a tip.
 
-**Additional Variables:**
+**Available Variables:**
 
 - `user` - Username
 - `userName` - Username
@@ -121,17 +115,6 @@ Triggered for new subscriptions.
 - `platform` - Platform name
 - `timestamp` - Timestamp of subscription
 
-## Example Actions
-
-### Tip Alert
-
-1. Create a new Action
-2. Set trigger to `Fansly Tip`
-3. Add sub-actions for:
-   - Play sound effect
-   - Show on-screen alert
-   - Send chat message: `Thank you %user% for the %tipAmountFormatted% tip!`
-
 ## Troubleshooting
 
 ### Debug Logging
@@ -143,19 +126,6 @@ The extension includes debug logging. Check the Streamer.bot logs for:
 - `[Fansly] Chat - username: message` - Chat message processed
 - `[Fansly] Tip - username: $X.XX` - Tip processed
 - `[Fansly] Subscription - username: tier` - Subscription processed
-
-## Development
-
-### Message Format
-
-The extension expects WebSocket messages in Fansly's format:
-
-```json
-{
-  "t": 10000,
-  "d": "{\"serviceId\":46,\"event\":\"{...}\"}"
-}
-```
 
 ## License
 
