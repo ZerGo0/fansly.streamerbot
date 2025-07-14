@@ -257,8 +257,8 @@ public class CPHInline
                 var tipData = DeserializeJson<Dictionary<string, object>>(attachMetadata);
                 if (tipData != null && tipData.ContainsKey("amount"))
                 {
-                    // Amount is in cents, convert to dollars
-                    info.Amount = Convert.ToDecimal(tipData["amount"]) / 100m;
+                    info.Amount = Convert.ToInt32(tipData["amount"]);
+                    info.AmountDollars = $"${(info.Amount / 1000):F2}";
                 }
             }
             catch (Exception ex)
@@ -316,7 +316,7 @@ public class CPHInline
         if (tipInfo.HasTip)
         {
             args["tipAmount"] = tipInfo.Amount;
-            args["tipAmountFormatted"] = $"${tipInfo.Amount:F2}";
+            args["tipAmountDollars"] = tipInfo.AmountDollars;
         }
         
         return args;
@@ -404,7 +404,8 @@ public class CPHInline
     private class TipInfo
     {
         public bool HasTip { get; set; }
-        public decimal Amount { get; set; }
+        public int Amount { get; set; }
+        public string AmountDollars { get; set; }
     }
     
     private class SubscriptionData
