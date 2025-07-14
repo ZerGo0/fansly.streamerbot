@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 public class CPHInline
 {
     private const int MESSAGE_TYPE_EVENT = 10000;
+    private const int BULK_TYPE_EVENT = 10001;
     private const int EVENT_TYPE_CHAT = 10;
     private const int EVENT_TYPE_SUBSCRIPTION = 53;
     private const int ATTACHMENT_TYPE_TIP = 7;
@@ -50,19 +51,36 @@ public class CPHInline
         }
         
         int messageType = Convert.ToInt32(outerMessage["t"]);
-        if (messageType != MESSAGE_TYPE_EVENT)
+        switch (messageType)
         {
-            CPH.LogDebug($"[Fansly] Ignoring message type: {messageType}");
-            return;
+            case MESSAGE_TYPE_EVENT:
+                if (!outerMessage.ContainsKey("d"))
+                {
+                    CPH.LogDebug("[Fansly] Event message missing 'd' field");
+                    return;
+                }
+
+                ProcessEventMessage(outerMessage["d"].ToString());
+                break;
+            case BULK_TYPE_EVENT:
+                if (!outerMessage.ContainsKey("d"))
+                {
+                    CPH.LogDebug("[Fansly] Bulk event message missing 'd' field");
+                    return;
+                }
+
+                var bulkData = DeserializeJson<List<Dictionary<string, object>>>(outerMessage["d"].ToString());
+                foreach (var message in bulkData)
+                {
+                    ProcessEventMessage(JsonConvert.SerializeObject(message));
+                }
+                break;
+
+
+            default:
+                CPH.LogDebug($"[Fansly] Unknown message type: {messageType}");
+                break;
         }
-        
-        if (!outerMessage.ContainsKey("d"))
-        {
-            CPH.LogDebug("[Fansly] Event message missing 'd' field");
-            return;
-        }
-        
-        ProcessEventMessage(outerMessage["d"].ToString());
     }
     
     private void ProcessEventMessage(string dataStr)
