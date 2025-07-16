@@ -70,9 +70,9 @@ public class CPHInline
                 }
 
                 var bulkData = DeserializeJson<List<Dictionary<string, object>>>(outerMessage["d"].ToString());
-                foreach (var message in bulkData)
+                foreach (var msg in bulkData)
                 {
-                    ProcessEventMessage(JsonConvert.SerializeObject(message));
+                    ProcessEventMessage(JsonConvert.SerializeObject(msg));
                 }
                 break;
 
