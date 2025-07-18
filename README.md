@@ -1,7 +1,5 @@
 # Fansly Streamer.bot Extension
 
-**Last Updated: 07/03/2025**
-
 A Streamer.bot extension that adds support for Fansly chat events including messages, tips, and subscriptions.
 
 ## Features
