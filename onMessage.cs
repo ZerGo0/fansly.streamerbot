@@ -276,7 +276,7 @@ public class CPHInline
                 if (tipData != null && tipData.ContainsKey("amount"))
                 {
                     info.Amount = Convert.ToInt32(tipData["amount"]);
-                    info.AmountDollars = $"${(info.Amount / 1000):F2}";
+                    info.AmountDollars = $"${((float)info.Amount / 1000):F2}";
                 }
             }
             catch (Exception ex)
