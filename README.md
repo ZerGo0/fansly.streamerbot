@@ -89,7 +89,7 @@ Triggered when a message contains a tip.
 - `subscriberTierId` - Subscription tier ID
 - `platform` - Platform name
 - `timestamp` - Timestamp of message
-- `tipAmount` - Tip amount in dollars (this is the raw value that Fansly sends, e.g., 5000 (this is the equivilant for $5))
+- `tipAmount` - Tip amount in dollars (this is the raw value that Fansly sends, e.g., 5000 (this is the equivalent for $5))
 - `tipAmountFormatted` - Formatted tip amount (e.g., "$5.00")
 
 ### Fansly Subscription
