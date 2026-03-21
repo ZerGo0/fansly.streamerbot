@@ -1,6 +1,6 @@
 # Examples
 
-These examples assume you already created the shared `Fansly Send Message` action described in [../setup.md](../setup.md).
+These examples assume you imported the release bundle and enabled the bundled `Fansly Send Message` action.
 
 Available examples:
 

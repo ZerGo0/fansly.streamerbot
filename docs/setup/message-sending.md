@@ -1,5 +1,9 @@
 # Message Sending Setup
 
+The release bundle already includes the `Fansly Send Message` action.
+You do not need to create that action manually from `sendMessage.cs`.
+After import, make sure the bundled action is enabled in Streamer.bot.
+
 > [!CAUTION]
 > Do not use your normal Fansly session token for Streamer.bot.
 > A normal session has full access to your account.

@@ -15,7 +15,7 @@ A Streamer.bot extension that adds support for Fansly chat events including mess
 - [Installation](./docs/setup/installation.md)
 - [Chatroom Setup](./docs/setup/chatroom.md)
 - [Message Sending Setup](./docs/setup/message-sending.md)
-- [Shared Send Action](./docs/setup/shared-action.md)
+- [Troubleshooting](./docs/troubleshooting.md)
 - [Triggers](./docs/triggers.md)
 - [Protocol Notes](./docs/protocol.md)
 - [Examples](./docs/examples/README.md)
