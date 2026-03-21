@@ -7,125 +7,24 @@ A Streamer.bot extension that adds support for Fansly chat events including mess
 - **Chat Messages** - Fansly chat messages
 - **Tips** - Fansly tips
 - **Subscriptions** - Fansly subscriptions
+- **Send Messages** - Send a Fansly chat message from a Streamer.bot action
 
-## Installation
+## Docs
 
-1. **Download the Extension**
+- [Setup](./docs/setup.md)
+- [Installation](./docs/setup/installation.md)
+- [Chatroom Setup](./docs/setup/chatroom.md)
+- [Message Sending Setup](./docs/setup/message-sending.md)
+- [Shared Send Action](./docs/setup/shared-action.md)
+- [Triggers](./docs/triggers.md)
+- [Protocol Notes](./docs/protocol.md)
+- [Examples](./docs/examples/README.md)
 
-   - Download the latest release from the [Releases](https://github.com/ZerGo0/fansly.streamerbot/releases/latest) page
+## Source Files
 
-2. **Import into Streamer.bot**
-
-   - Open Streamer.bot
-   - Open `Import`
-   - Drag and drop the file on the `Import String` field
-   - Click `Import`
-
-3. **Set up your chatroom**
-
-   - Head over to your [Fansly chatroom](https://fansly.com/creator/streaming)
-   - Click the 3 dots next to the chat input > `Copy Chat Url` > copy the id at the end of the url (`https://fansly.com/chatroom/408830844350771200` > `408830844350771200`)
-   - Go to `Variables` > `Persisted Globals` > Right-click > `Add Variable`:
-     - Name: `fanslyChatroomId`
-     - Value: `408830844350771200` (replace with your chatroom id)
-     - Click `Save`
-     - `Auto Type` should be unchecked
-   - Go to `Servers/Clients` > `Websocket Client` > Right-click the fansly client > `Disconnect` > And `Connect` again
-     - this joins your chatroom
-
-4. **Double check the setup**
-
-   - Check all new actions, double click the `Execute Code` actions and hit `Compile` to verify there are no errors
-     - Please join the [Discord](https://discord.gg/SBWkgGcmfr) if you have any issues
-
-## Usage
-
-The extension registers three custom triggers in Streamer.bot (Triggers > Custom > Fansly):
-
-### Fansly Message
-
-Triggered for every chat message.
-
-**Available Variables:**
-
-- `user` - Username
-- `userName` - Username
-- `displayName` - Display name
-- `userId` - User's ID
-- `message` - Message content
-- `messageId` - Unique message ID
-- `chatRoomId` - Chat room ID
-- `usernameColor` - Hex color of username
-- `isCreator` - Whether user is the creator
-- `isStaff` - Whether user is staff
-- `isFollowing` - Whether user is following
-- `isSubscriber` - Whether user is subscribed
-- `subscriberTier` - Subscription tier name
-- `subscriberTierColor` - Hex color of tier
-- `subscriberTierId` - Subscription tier ID
-- `platform` - Platform name
-- `timestamp` - Timestamp of message
-
-### Fansly Tip
-
-Triggered when a message contains a tip.
-
-**Available Variables:**
-
-- `user` - Username
-- `userName` - Username
-- `displayName` - Display name
-- `userId` - User's ID
-- `message` - Message content
-- `messageId` - Unique message ID
-- `chatRoomId` - Chat room ID
-- `usernameColor` - Hex color of username
-- `isCreator` - Whether user is the creator
-- `isStaff` - Whether user is staff
-- `isFollowing` - Whether user is following
-- `isSubscriber` - Whether user is subscribed
-- `subscriberTier` - Subscription tier name
-- `subscriberTierColor` - Hex color of tier
-- `subscriberTierId` - Subscription tier ID
-- `platform` - Platform name
-- `timestamp` - Timestamp of message
-- `tipAmount` - Raw Tip amount (this is the raw value that Fansly sends, e.g., 5000 (this is the equivalent for $5))
-- `tipAmountFormatted` - Formatted tip amount (e.g., "$5.00")
-
-### Fansly Subscription
-
-Triggered for new subscriptions.
-
-**Available Variables:**
-
-- `user` - Username
-- `userName` - Username
-- `displayName` - Display name
-- `userId` - User's ID
-- `tier` - Subscription tier name
-- `tierName` - Subscription tier name
-- `tierColor` - Hex color of tier
-- `tierId` - Subscription tier ID
-- `streak` - Subscription streak in days
-- `totalDays` - Total subscription days
-- `months` - Approximate months subscribed
-- `usernameColor` - Hex color of username
-- `chatRoomId` - Chat room ID
-- `alertId` - Alert ID
-- `platform` - Platform name
-- `timestamp` - Timestamp of subscription
-
-## Troubleshooting
-
-### Debug Logging
-
-The extension includes debug logging. Check the Streamer.bot logs for:
-
-- `[Fansly] onMessage Init` - Extension initialized
-- `[Fansly] Processing event type: X` - Event type received
-- `[Fansly] Chat - username: message` - Chat message processed
-- `[Fansly] Tip - username: $X.XX` - Tip processed
-- `[Fansly] Subscription - username: tier` - Subscription processed
+- `onOpen.cs` - Registers Fansly custom triggers and joins the websocket chatroom
+- `onMessage.cs` - Parses incoming websocket events and dispatches Streamer.bot triggers
+- `sendMessage.cs` - Sends a Fansly chat message with the HTTP API
 
 ## License
 

@@ -1,10 +1,12 @@
-# Notes
+# Protocol Notes
 
-## Fansly chat websocket message examples
+## Fansly Chat Websocket
 
-Websocket Url: `wss://chatws.fansly.com/?v=3`
+Websocket URL:
 
-### Normal chat message (Server > Client)
+- `wss://chatws.fansly.com/?v=3`
+
+### Normal chat message (server to client)
 
 ```json
 {
@@ -13,7 +15,7 @@ Websocket Url: `wss://chatws.fansly.com/?v=3`
 }
 ```
 
-### Tip message (Server > Client)
+### Tip message (server to client)
 
 ```json
 {
@@ -22,7 +24,7 @@ Websocket Url: `wss://chatws.fansly.com/?v=3`
 }
 ```
 
-### User subscribed (Server > Client)
+### Subscription message (server to client)
 
 ```json
 {
@@ -31,8 +33,33 @@ Websocket Url: `wss://chatws.fansly.com/?v=3`
 }
 ```
 
-### Join chat message (Client > Server)
+### Join chat message (client to server)
 
 ```json
 { "t": 46001, "d": "{\"chatRoomId\":\"408830844350771200\"}" }
+```
+
+## Fansly Chat Send Request
+
+Endpoint:
+
+- `POST https://apiv3.fansly.com/api/v1/chatroom/message?ngsw-bypass=true`
+
+Headers:
+
+- `accept: application/json, text/plain, */*`
+- `accept-language: en-US,en;q=0.9`
+- `authorization: <claimed Fansly Management Session token>`
+- `origin: https://fansly.com`
+- `referer: https://fansly.com/`
+- `user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36`
+- `fansly-client-id: 891628335845621760`
+
+Body:
+
+```json
+{
+  "chatRoomId": "408830844350771200",
+  "content": "hello from streamer.bot"
+}
 ```
