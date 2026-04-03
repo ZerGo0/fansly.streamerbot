@@ -2,7 +2,7 @@
 
 ## No Fansly events are showing up in Streamer.bot
 
-If chat messages, tips, or subscription events are not showing up:
+If chat messages, tips, subscriptions, room events, or session events are not showing up:
 
 1. Make sure you imported the latest release bundle.
 2. Make sure the imported Fansly actions are enabled.
@@ -19,9 +19,20 @@ Check the Streamer.bot log for:
 
 - `[Fansly] onOpen Init`
 - `[Fansly] onMessage`
-- `[Fansly] Processing event type: X`
+- `[Fansly] Triggered fansly... for ...`
 
 If you do not see `[Fansly] onOpen Init`, the import may be incomplete or the relevant action may be disabled.
+
+## Private messages are not showing up
+
+If public messages work but private messages do not:
+
+1. Make sure `fanslyAuthToken` exists in `Variables -> Persisted Globals`.
+2. Make sure it contains a claimed Fansly Management Session token.
+3. Reconnect the Fansly websocket client after saving the token.
+4. Check the log for `[Fansly] Authenticating with token`.
+
+Without `fanslyAuthToken`, the extension can still join the room, but private inbound messages will not be available.
 
 ## I copied the Management Session URL, but I cannot find the token
 
