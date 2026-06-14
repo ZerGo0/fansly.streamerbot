@@ -16,7 +16,7 @@ Create a persisted global in Streamer.bot:
 2. Go to `Persisted Globals`.
 3. Right-click and choose `Add Variable`.
 4. Set:
-   - Name: `fanslyChatroomId`
+   - Name: `fanslyChatroomId` (the name is case sensitive)
    - Value: your chatroom id
    - `Auto Type`: unchecked
 5. Save the variable.
