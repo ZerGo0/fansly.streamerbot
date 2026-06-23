@@ -11,6 +11,15 @@ public class CPHInline
         CPH.RegisterCustomTrigger("Fansly Message", "fanslyMessage", new[] {"Fansly"});
         CPH.RegisterCustomTrigger("Fansly Tip", "fanslyTip", new[] {"Fansly"});
         CPH.RegisterCustomTrigger("Fansly Subscription", "fanslySubscription", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Session Verified", "fanslySessionVerified", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Error", "fanslyError", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Ping Response", "fanslyPingResponse", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Chat Room Updated", "fanslyChatRoomUpdated", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Messages Removed", "fanslyMessagesRemoved", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Moderation", "fanslyModeration", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Goal Created", "fanslyGoalCreated", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Goal Updated", "fanslyGoalUpdated", new[] {"Fansly"});
+        CPH.RegisterCustomTrigger("Fansly Settings Updated", "fanslySettingsUpdated", new[] {"Fansly"});
     }
 
     public bool Execute()
@@ -31,6 +40,15 @@ public class CPHInline
         {
             CPH.LogWarn("[Fansly] chatRoomId not found");
             return false;
+        }
+
+        string token = CPH.GetGlobalVar<string>("fanslyAuthToken", true);
+        if (!string.IsNullOrEmpty(token))
+        {
+            // Required to receive private messages
+            CPH.LogInfo($"[Fansly] Authenticating with token");
+            string authMessage = $"{{\"t\": 1,\"d\": \"{{\\\"token\\\":\\\"{token}\\\",\\\"v\\\":3}}\"}}";
+            CPH.WebsocketSend(authMessage, wsIdx);
         }
 
         CPH.LogInfo($"[Fansly] Trying to join chatroom: chatRoomId: {chatRoomId} wsIdx: {wsIdx}");

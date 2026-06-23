@@ -78,6 +78,7 @@ If you cannot find the token:
 ## Save the Token in Streamer.bot
 
 The copied value is the claimed Management Session token that Streamer.bot should use for message sending.
+If `fanslyAuthToken` is present, the websocket client also sends a session verify request so private inbound messages can be received.
 
 Create another persisted global in Streamer.bot:
 

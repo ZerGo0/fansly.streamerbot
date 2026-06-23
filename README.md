@@ -1,12 +1,14 @@
 # Fansly Streamer.bot Extension
 
-A Streamer.bot extension that adds support for Fansly chat events including messages, tips, and subscriptions.
+A Streamer.bot extension that adds support for Fansly chat events including messages, tips, subscriptions, room updates, moderation events, goals, settings updates, and session-level websocket events.
 
 ## Features
 
 - **Chat Messages** - Fansly chat messages
 - **Tips** - Fansly tips
 - **Subscriptions** - Fansly subscriptions
+- **Room Events** - Chat room updates, moderation, goals, and settings changes
+- **Session Events** - Session verification, ping responses, and websocket error events
 - **Send Messages** - Send a Fansly chat message from a Streamer.bot action
 
 ## Docs
@@ -23,8 +25,12 @@ A Streamer.bot extension that adds support for Fansly chat events including mess
 ## Source Files
 
 - `onOpen.cs` - Registers Fansly custom triggers and joins the websocket chatroom
-- `onMessage.cs` - Parses incoming websocket events and dispatches Streamer.bot triggers
+- `onMessage.cs` - Parses incoming websocket events, normalizes typed protocol payloads, and dispatches Streamer.bot triggers
 - `sendMessage.cs` - Sends a Fansly chat message with the HTTP API
+
+## Validation
+
+This repo includes a C# test project under `tests/` and a GitHub Actions workflow named `tests` that runs `dotnet test` against raw websocket message fixtures.
 
 ## License
 
